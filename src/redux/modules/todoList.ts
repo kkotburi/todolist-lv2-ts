@@ -1,11 +1,10 @@
 import shortid from 'shortid';
-import { Todo } from '../../components/Form';
 
 const ADD_TODO = 'todoList/ADD_TODO';
 const DELETE_TODO = 'todoList/DELETE_TODO';
 const SWITCH_TODO = 'todoList/SWITCH_TODO';
 
-export const addTodo = (payload: Todo[]) => ({
+export const addTodo = (payload: Todo) => ({
   type: ADD_TODO,
   payload
 });
@@ -20,7 +19,16 @@ export const switchTodo = (payload: string) => ({
 
 type TodoListAction = ReturnType<typeof addTodo> | ReturnType<typeof deleteTodo> | ReturnType<typeof switchTodo>;
 
-const initialState = [
+export interface Todo {
+  id: string;
+  title: string;
+  contents: string;
+  isDone: boolean;
+}
+
+export type TodoListState = Todo[];
+
+const initialState: TodoListState = [
   {
     id: shortid.generate(),
     title: '제주도',
@@ -35,7 +43,7 @@ const initialState = [
   }
 ];
 
-const todoList = (state = initialState, action: TodoListAction) => {
+const todoList = (state: TodoListState = initialState, action: TodoListAction) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [...state, action.payload];

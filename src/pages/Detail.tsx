@@ -1,24 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-// import { Todo } from '../components/Form';
-
-export interface Todo {
-  id: string;
-  title: string;
-  contents: string;
-  isDone: boolean;
-}
-
-interface RootState {
-  todoList: Todo[];
-}
+import { RootState } from '../redux/config/configStore';
+import { TodoListState } from '../redux/modules/todoList';
 
 const Detail = () => {
-  const { id } = useParams();
+  const { id } = useParams<string>();
   const navigate = useNavigate();
 
-  const todoList = useSelector((state: RootState) => {
+  const todoList = useSelector((state: RootState): TodoListState => {
     return state.todoList;
   });
 
@@ -27,10 +17,10 @@ const Detail = () => {
   return (
     <div>
       <button onClick={() => navigate('/')}>previous</button>
-      {/* <div>{todo.id}</div>
-      <div>{todo.title}</div>
-      <div>{todo.contents}</div>
-      <div>{todo.isDone.toString()}</div> */}
+      <div>{todo?.id}</div>
+      <div>{todo?.title}</div>
+      <div>{todo?.contents}</div>
+      <div>{todo?.isDone.toString()}</div>
     </div>
   );
 };

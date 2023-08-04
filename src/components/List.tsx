@@ -1,14 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Todo } from './Form';
-
-interface RootState {
-  todoList: Todo[];
-}
+import { RootState } from '../redux/config/configStore';
+import { TodoListState } from '../redux/modules/todoList';
 
 const List = () => {
-  const todoList = useSelector((state: RootState) => {
+  const todoList = useSelector((state: RootState): TodoListState => {
     return state.todoList;
   });
 
