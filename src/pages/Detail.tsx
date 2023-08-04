@@ -27,10 +27,10 @@ const Detail = () => {
   return (
     <div>
       <button onClick={() => navigate('/')}>previous</button>
-      <div>{todo.id}</div>
+      {/* <div>{todo.id}</div>
       <div>{todo.title}</div>
       <div>{todo.contents}</div>
-      <div>{todo.isDone.toString()}</div>
+      <div>{todo.isDone.toString()}</div> */}
     </div>
   );
 };
